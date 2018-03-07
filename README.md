@@ -34,4 +34,8 @@ make test
 
 # Software Requirements
 
-- Java 8
+- Java 8 (Nextflow)
+
+- GraphViz Dot (to compile flowchart)
+
+- any other requirements needed by your pipeline tasks
