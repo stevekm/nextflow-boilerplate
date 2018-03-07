@@ -6,8 +6,13 @@ SHELL:=/bin/bash
 
 install: ./nextflow
 
+update: ./nextflow
+	./nextflow self-update
 
 # ~~~~~ RUN PIPELINE ~~~~~ #
+test: install
+	./nextflow run test.nf
+
 run: install
 	./nextflow run main.nf  -with-dag flowchart.dot $(EP) && \
 	[ -f flowchart.dot ] && dot flowchart.dot -Tpng -o flowchart.png
@@ -37,8 +42,10 @@ clean-output:
 clean-work:
 	[ -d work ] && mv work oldwork && rm -rf oldwork &
 
+# deletes files from previous runs of the pipeline, keeps current results
 clean: clean-logs clean-traces clean-reports clean-flowcharts
 
+# deletes all pipeline output
 clean-all: clean clean-output clean-work 
 	[ -d .nextflow ] && mv .nextflow .nextflowold && rm -rf .nextflowold &
 	rm -f .nextflow.log
