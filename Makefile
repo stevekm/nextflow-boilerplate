@@ -14,13 +14,10 @@ test: install
 	./nextflow run test.nf
 
 run: install
-	./nextflow run main.nf  -with-dag flowchart.dot $(EP) && \
+	./nextflow run main.nf -resume -with-dag flowchart.dot $(EP) 
+
+flowchart:
 	[ -f flowchart.dot ] && dot flowchart.dot -Tpng -o flowchart.png
-
-resume: install
-	./nextflow run main.nf  -resume -with-dag flowchart.dot $(EP) && \
-        [ -f flowchart.dot ] && dot flowchart.dot -Tpng -o flowchart.png
-
 
 
 # ~~~~~ CLEANUP ~~~~~ #
