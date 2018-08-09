@@ -4,7 +4,7 @@ samples2.subscribe { println "samples2: ${it}" }
 
 process make_file {
     tag { "${sampleID}" }
-    publishDir "${params.output_dir}/make_file", mode: 'copy', overwrite: true
+    publishDir "${params.outputDir}/make_file", mode: 'copy', overwrite: true
     echo true
     executor "local"
 
@@ -24,7 +24,7 @@ process make_file {
 }
 
 samples_files2.subscribe { println "[samples_files2]: ${it}" }
-samples_files3.collectFile(name: "samples_files3.txt", storeDir: "${params.output_dir}")
+samples_files3.collectFile(name: "samples_files3.txt", storeDir: "${params.outputDir}")
 
 process get_files {
     tag { "${sampleID}" }
