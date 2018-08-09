@@ -3,7 +3,7 @@ Channel.from( ['Sample1','Sample2','Sample3','Sample4'] ).into { samples; sample
 samples2.subscribe { println "samples2: ${it}" }
 
 process make_file {
-    tag { "${sampleID}" }
+    tag "${sampleID}"
     publishDir "${params.outputDir}/make_file", mode: 'copy', overwrite: true
     echo true
     executor "local"
@@ -27,7 +27,7 @@ samples_files2.subscribe { println "[samples_files2]: ${it}" }
 samples_files3.collectFile(name: "samples_files3.txt", storeDir: "${params.outputDir}")
 
 process get_files {
-    tag { "${sampleID}" }
+    tag "${sampleID}"
     echo true
     executor "local"
 
