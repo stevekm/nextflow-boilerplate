@@ -15,7 +15,8 @@ test: install
 	./nextflow run test.nf
 
 run: install
-	./nextflow run main.nf -resume -with-dag flowchart.dot $(EP)
+	./nextflow run main.nf $(EP)
+# -resume -with-dag flowchart.dot
 
 flowchart:
 	[ -f flowchart.dot ] && dot flowchart.dot -Tpng -o flowchart.png
